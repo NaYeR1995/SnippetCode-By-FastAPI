@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import Base, engine
 from .config import DATABASE_URL, ALGORITHM, SECRET_KEY
+from .models.UserModel import User
+
 
 # Create all database tables
 Base.metadata.create_all(bind=engine)
@@ -13,5 +15,5 @@ def read_root():
 
 
 @app.post('/')
-def create_user():
-    
+def create_user(user: User):    
+    new_user = User()
